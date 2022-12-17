@@ -40,6 +40,10 @@ func TestCheck(t *testing.T) {
 		t.Fatalf("failed to identify an disposable domain; 10minutemail")
 	}
 
+	if disposable, err := Check("someone@10minutemail.ru"); err != nil || !disposable {
+		t.Fatalf("failed to identify an disposable email; someone@10minutemail.ru")
+	}
+
 	if disposable, err := Check("foobar.com"); err != nil || !disposable {
 		t.Fatalf("failed to identify a disposable domain; got foobar")
 	}
