@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io"
 	"net/http"
+	"strings"
 	"sync"
 	"time"
 )
@@ -97,6 +98,11 @@ func refreshDomains() error {
 // Check returns true if an email domain is a known disposable domain, false
 // otherwise.
 func Check(domain string) (bool, error) {
+	/* if an email is passed in, extract the domain */
+	if _, after, cut := strings.Cut(domain, "@"); cut {
+		domain = after
+	}
+
 	domains.RLock()
 
 	if len(domains.domains) == 0 || time.Now().After(lastFetched.Add(CachePeriod)) {
