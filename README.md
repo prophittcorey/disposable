@@ -13,6 +13,19 @@ disposable.Check("someone@10minutemail.ru") // => true, err
 disposable.Domains() // => ["10minutemail.ru", ...]
 ```
 
+## Tool Usage
+
+```bash
+# Install the latest tool.
+$ go install github.com/prophittcorey/disposable/cmd/disposable@latest
+
+# Dump all domains.
+$ disposable --domains
+
+# Check a specific email address or domain.
+$ disposable --check someone@10minutemail.ru
+```
+
 ## License
 
 The source code for this repository is licensed under the MIT license, which you can
