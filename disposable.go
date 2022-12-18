@@ -13,7 +13,7 @@ var (
 	// A map of disposable domain sources. All sources will be fetched concurrently
 	// and merged together.
 	Sources = map[string][]byte{
-		"https://github.com/disposable/disposable-email-domains/blob/master/domains.txt": []byte{},
+		"https://github.com/disposable/disposable-email-domains/blob/master/domains.txt?raw=true": []byte{},
 	}
 
 	// HTTPClient is used to perform all HTTP requests. You can specify your own
@@ -83,7 +83,7 @@ func refreshDomains() error {
 		}
 	}
 
-	/* update global exit node domains */
+	/* update global disposable domains */
 
 	domains.Lock()
 
@@ -95,8 +95,7 @@ func refreshDomains() error {
 	return nil
 }
 
-// Check returns true if an email domain is a known disposable domain, false
-// otherwise.
+// Check returns true if an email domain is a known disposable email domain.
 func Check(domain string) (bool, error) {
 	/* if an email is passed in, extract the domain */
 	if _, after, cut := strings.Cut(domain, "@"); cut {
@@ -124,7 +123,7 @@ func Check(domain string) (bool, error) {
 	return false, nil
 }
 
-// Domains returns a slice of all known exit node domains.
+// Domains returns a slice of all known disposable email domains.
 func Domains() []string {
 	domains.RLock()
 
