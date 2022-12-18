@@ -1,5 +1,7 @@
 # Disposable
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/prophittcorey/disposable.svg)](https://pkg.go.dev/github.com/prophittcorey/disposable)
+
 A golang package and command line tool for the analysis and identification of
 disposable email addresses.
 
