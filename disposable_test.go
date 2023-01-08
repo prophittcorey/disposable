@@ -14,14 +14,21 @@ func TestDomains(t *testing.T) {
 
 	defer svr.Close()
 
+	svr2 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "foomail.ru\nfoomail.cn")
+	}))
+
+	defer svr2.Close()
+
 	Sources = map[string][]byte{
-		svr.URL: []byte{},
+		svr.URL:  []byte{},
+		svr2.URL: []byte{},
 	}
 
 	ds := Domains()
 
-	if len(ds) != 2 {
-		t.Fatalf("failed to find two domains; got %d", len(ds))
+	if len(ds) != 4 {
+		t.Fatalf("failed to find four domains; got %d", len(ds))
 	}
 }
 
@@ -32,8 +39,15 @@ func TestCheck(t *testing.T) {
 
 	defer svr.Close()
 
+	svr2 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "foomail.ru\nfoomail.cn")
+	}))
+
+	defer svr2.Close()
+
 	Sources = map[string][]byte{
-		svr.URL: []byte{},
+		svr.URL:  []byte{},
+		svr2.URL: []byte{},
 	}
 
 	if disposable, err := Check("10minutemail.ru"); err != nil || !disposable {
