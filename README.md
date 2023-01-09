@@ -19,13 +19,13 @@ disposable.Domains() // => ["10minutemail.ru", ...]
 
 ```bash
 # Install the latest tool.
-$ go install github.com/prophittcorey/disposable/cmd/disposable@latest
+go install github.com/prophittcorey/disposable/cmd/disposable@latest
 
 # Dump all domains.
-$ disposable --domains
+disposable --domains
 
 # Check a specific email address or domain.
-$ disposable --check someone@10minutemail.ru
+disposable --check someone@10minutemail.ru
 ```
 
 ## License
